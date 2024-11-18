@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0)) { SpawnEnemy(0, GetSpawnPointInDonut()); }
+        if(Input.GetKeyDown(KeyCode.Mouse0)) { int radNum = Random.Range(0, enemyList.Count); SpawnEnemy(radNum, GetSpawnPointInDonut()); }
     }
 
     private void OnDrawGizmos()
