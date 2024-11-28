@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
@@ -6,6 +9,7 @@ public class IntroManager : MonoBehaviour
     [Header("Hero Panels")]
     [SerializeField] GameObject titleScreenPanel;
     [SerializeField] GameObject mainMenuPanel;
+    [SerializeField] GameObject mainMenuFirstButton;
 
     [Header("FX Panel/Variables")]
     [SerializeField] Image fadePanel;
@@ -31,7 +35,10 @@ public class IntroManager : MonoBehaviour
 
     private void EnablePanel(GameObject activePanel)
     {
+        
         activePanel.SetActive(true);
+
+        //if (activePanel == mainMenuPanel) { EventSystem.current.SetSelectedGameObject(mainMenuFirstButton); Debug.Log(EventSystem.current.currentSelectedGameObject); }
     }
     private void DisablePanel(GameObject panel)
     {
@@ -52,7 +59,7 @@ public class IntroManager : MonoBehaviour
             pressAnyButtonObj.SetActive(false);
             DisablePanel(titleScreenPanel);
             EnablePanel(mainMenuPanel);
-            //use eventsytem.1stobject = something
+            EventSystem.current.firstSelectedGameObject = mainMenuFirstButton;
         }
     }
 }
