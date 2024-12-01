@@ -61,7 +61,7 @@ public class EXPManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) { IncreaseEXP(1f); Debug.Log("pressed E"); }
     }
 
-    private void IncreaseEXP(float xpIncrease)
+    public void IncreaseEXP(float xpIncrease)
     {
         currentEXP += xpIncrease;
         totalEXP += xpIncrease;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 
@@ -15,6 +16,9 @@ public class EnemyBase : MonoBehaviour
     private Transform target;
     private Vector2 direction;
 
+    [Header("Unity Events")]
+    public UnityEvent EnemyHit;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -23,6 +27,11 @@ public class EnemyBase : MonoBehaviour
         {
             target = player;
         }
+
+        UIManager uiManager = GameObject.FindGameObjectWithTag("uiManager").GetComponent<UIManager>();
+        EXPManager expManager = GameObject.FindGameObjectWithTag("Player").GetComponent<EXPManager>();
+        EnemyHit.AddListener(uiManager.IncreaseEnemiesKilled);
+        EnemyHit.AddListener(() => expManager.IncreaseEXP(1f));
     }
 
     private Vector2 Direction()
@@ -47,5 +56,18 @@ public class EnemyBase : MonoBehaviour
     private void FixedUpdate()
     {
         MoveTowardsPlayer(moveSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            EnemyHit.Invoke();
+            Destroy(gameObject);
+        }
+    }
+    public void TestMethod()
+    {
+        Debug.Log("TestMethod() called in EnemyHit UnityEvent!");
     }
 }
