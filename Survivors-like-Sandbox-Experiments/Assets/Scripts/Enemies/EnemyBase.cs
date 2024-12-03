@@ -30,6 +30,7 @@ public class EnemyBase : MonoBehaviour
 
         UIManager uiManager = GameObject.FindGameObjectWithTag("uiManager").GetComponent<UIManager>();
         EXPManager expManager = GameObject.FindGameObjectWithTag("Player").GetComponent<EXPManager>();
+        
         EnemyHit.AddListener(uiManager.IncreaseEnemiesKilled);
         EnemyHit.AddListener(() => expManager.IncreaseEXP(1f));
     }
