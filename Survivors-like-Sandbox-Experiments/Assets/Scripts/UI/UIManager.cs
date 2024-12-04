@@ -2,6 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles all UI operations, specifically handles the abstracted control of the UI elements.
+/// Fed fromm other scripts so all this script is responsible for is controlling images and text etc.
+/// </summary>
 public class UIManager : MonoBehaviour
 {
 
@@ -34,7 +38,10 @@ public class UIManager : MonoBehaviour
         enemiesKilled = 0;
         enemiesKilledText.text = enemiesKilled.ToString();
     }
-
+    /// <summary>
+    /// Updates UI EXP bar to new fill amount between 0 and 1.
+    /// </summary>
+    /// <param name="fillAmount"></param>
     public void UpdateEXPBar(float fillAmount)
     {
         characterOneEXPBar.fillAmount = fillAmount;
@@ -45,7 +52,12 @@ public class UIManager : MonoBehaviour
         enemiesKilled++;
         enemiesKilledText.text = enemiesKilled.ToString();
     }
-
+    /// <summary>
+    /// Converts passed in gametime to a digital format of minutes and seconds using 'string.Format' and updates the text element for the UI Game Timer.
+    /// Called through unity event every 0.1f seconds for less draw calls but unnoticable difference in visual performance
+    /// **invokerepeating could also be used potentially
+    /// </summary>
+    /// <param name="gameTime"></param>
     public void IncreaseTime(float gameTime)
     {
         minutes = Mathf.FloorToInt(gameTime / 60);

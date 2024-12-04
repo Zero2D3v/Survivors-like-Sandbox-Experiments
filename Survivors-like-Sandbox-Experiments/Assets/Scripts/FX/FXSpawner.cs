@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Turned into class that holds animation events.
+/// Sits on animated game object. For enabling FX objects and disabling at end.
+/// </summary>
 public class FXSpawner : MonoBehaviour
 {
     [SerializeField] GameObject fxObject;

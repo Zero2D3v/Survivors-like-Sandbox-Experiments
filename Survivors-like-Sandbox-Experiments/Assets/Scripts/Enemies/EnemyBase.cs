@@ -3,7 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-
+/// <summary>
+/// Base class for enemies.
+/// Basic components and behaviour to be built upon
+/// </summary>
 public class EnemyBase : MonoBehaviour
 {
 
@@ -34,13 +37,21 @@ public class EnemyBase : MonoBehaviour
         EnemyHit.AddListener(uiManager.IncreaseEnemiesKilled);
         EnemyHit.AddListener(() => expManager.IncreaseEXP(1f));
     }
-
+    /// <summary>
+    /// Calculates direction to target
+    /// </summary>
+    /// <returns>Vector2</returns>
     private Vector2 Direction()
     {
         //don't tforget to normalize!! --> otherwise enemy will slow down as gets closer.
         direction = (target.position - transform.position).normalized;
         return direction;
     }
+    /// <summary>
+    /// Assuming target is 'Player', moves enemy towards target.
+    /// Exits if no target assigned.
+    /// </summary>
+    /// <param name="moveSpeed"></param>
     private void MoveTowardsPlayer(float moveSpeed)
     {
         if (!target) return;

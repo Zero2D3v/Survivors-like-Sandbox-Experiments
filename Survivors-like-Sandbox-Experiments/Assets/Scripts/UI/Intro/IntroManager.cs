@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
+/// <summary>
+/// Responsible for sequencing and all events in first scene/screen.
+/// </summary>
 public class IntroManager : MonoBehaviour
 {
     [Header("Hero Panels")]
@@ -49,7 +52,10 @@ public class IntroManager : MonoBehaviour
     {
         AnyButtonPressed();
     }
-
+    /// <summary>
+    /// Detects input for any button pressed prompt and in theory detects what controller you're using and could switch the UI profile or tutorial accordingly.
+    /// Assigns first active button on menu switch **important as controller input won't work without a starting active button.
+    /// </summary>
     private void AnyButtonPressed()
     {
         if (!pressAnyButtonObj) return;

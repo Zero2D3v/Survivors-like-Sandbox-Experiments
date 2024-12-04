@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Matches rotation to Player.
+/// Used for UI icon in map.
+/// </summary>
 public class MatchPlayerRotation : MonoBehaviour
 {
     private Transform playerTransform;

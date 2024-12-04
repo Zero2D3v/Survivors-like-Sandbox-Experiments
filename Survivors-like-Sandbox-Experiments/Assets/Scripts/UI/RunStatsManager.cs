@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// First attempt at a UnityEvents Manager.
+/// Turned into TimeTcker Script.
+/// </summary>
 public class RunStatsManager : MonoBehaviour
 {
     [Header("Tracked Stats")]

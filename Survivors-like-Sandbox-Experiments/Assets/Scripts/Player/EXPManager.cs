@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Handles all EXP related operations.
+/// </summary>
 public class EXPManager : MonoBehaviour
 {
     [SerializeField] UIManager uiManager;
@@ -21,15 +24,25 @@ public class EXPManager : MonoBehaviour
 
         CalculateNextLevelXP(level);
     }
-
+    /// <summary>
+    /// Calculates required EXp for next level.
+    /// Exits if still in level 1 as modifier starts on level 2.
+    /// </summary>
+    /// <param name="level"></param>
     private void CalculateNextLevelXP(int level)
     {
         if (level <= 1) return;
 
-        nextLevelXP *= 1.5f;
+        nextLevelXP *= nextLevelModifier;
 
         nextLevelXP = (int)nextLevelXP;
     }
+    /// <summary>
+    /// Resets the current EXP by minusing the next level EXP for resiting the bar.
+    /// Increases the Level.
+    /// Triggers CalculateNextLevelEXP()
+    /// ** may be better as a unity event
+    /// </summary>
     private void LevelUP()
     {
         //totalEXP += currentEXP;
@@ -38,7 +51,10 @@ public class EXPManager : MonoBehaviour
         Debug.Log("Level UP!");
         CalculateNextLevelXP(level);
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>returns the fill amount from 0 to 1 to be used in the UI based on the EXP stat values</returns>
     private float XPFillAmount()
     {
         if(currentEXP >= nextLevelXP)
@@ -50,7 +66,9 @@ public class EXPManager : MonoBehaviour
 
         return xpFillAmount;
     }
-
+    /// <summary>
+    /// Calls the UI manager to update the UI EXP bar
+    /// </summary>
     private void UpdateExperienceUI()
     {
         uiManager.UpdateEXPBar(XPFillAmount());
@@ -60,7 +78,10 @@ public class EXPManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)) { IncreaseEXP(1f); Debug.Log("pressed E"); }
     }
-
+    /// <summary>
+    /// Increases EXP value and calls the UI to be updated.
+    /// </summary>
+    /// <param name="xpIncrease"></param>
     public void IncreaseEXP(float xpIncrease)
     {
         currentEXP += xpIncrease;

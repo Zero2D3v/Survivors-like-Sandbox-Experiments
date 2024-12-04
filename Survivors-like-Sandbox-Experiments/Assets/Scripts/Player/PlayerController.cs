@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Handles Player input, moving and rotation.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
@@ -32,13 +35,18 @@ public class PlayerController : MonoBehaviour
 
         move.Disable();
     }
-
+    /// <summary>
+    /// Reads Input
+    /// </summary>
+    /// <returns>vector2</returns>
     private Vector2 MoveDirection()
     {
         moveDirection = move.ReadValue<Vector2>();
         return moveDirection;
     }
-
+    /// <summary>
+    /// matches player rotation to direction with a controllable delay/period
+    /// </summary>
     private void RotateToDirection()
     {
         if(moveDirection !=  Vector2.zero)
@@ -58,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //linearVelocity seems to have replaced rb.velocity in Unity6
         rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
         RotateToDirection();

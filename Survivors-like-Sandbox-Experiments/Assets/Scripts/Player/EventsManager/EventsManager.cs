@@ -2,6 +2,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Player Events Manager learning.
+/// </summary>
 public class EventsManager : MonoBehaviour
 {
     public UnityEvent EnemyHit;
